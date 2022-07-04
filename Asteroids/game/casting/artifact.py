@@ -1,7 +1,7 @@
-from game.casting.actor import Actor
+from game.casting.spacship import Spaceship
 
 
-class Artifact(Actor):
+class Artifact(Spaceship):
     """
     An item of cultural or historical interest. 
     

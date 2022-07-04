@@ -1,7 +1,7 @@
 import os
 import random
 
-from game.casting.actor import Actor
+from game.casting.spacship import Spaceship
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
 
@@ -34,7 +34,7 @@ def main():
     cast = Cast()
     
     # create the banner
-    banner = Actor()
+    banner = Spaceship()
     banner.set_text("")
     banner.set_font_size(FONT_SIZE)
     banner.set_color(WHITE)
@@ -46,7 +46,7 @@ def main():
     y = int(MAX_Y - 15)
     position = Point(x, y)
 
-    robot = Actor()
+    robot = Spaceship()
     robot.set_text("#")
     robot.set_font_size(FONT_SIZE)
     robot.set_color(WHITE)
