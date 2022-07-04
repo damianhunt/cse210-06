@@ -1,90 +1,52 @@
-from game.services.score import Score
+from constants import *
+from game.casting.cast import Cast
+from game.directing.scene_manager import SceneManager
+from game.scripting.action_callback import ActionCallback
+from game.scripting.script import Script
 
-class Director:
-    """A person who directs the game. 
-    
-    The responsibility of a Director is to control the sequence of play.
 
-    Attributes:
-        _keyboard_service (KeyboardService): For getting directional input.
-        _video_service (VideoService): For providing video output.
-    """
+class Director(ActionCallback):
+    """A person who directs the game."""
 
-    def __init__(self, keyboard_service, video_service):
-        """Constructs a new Director using the specified keyboard and video services.
+    def __init__(self, video_service):
+        """Constructs a new Director using the specified video service.
         
         Args:
-            keyboard_service (KeyboardService): An instance of KeyboardService.
             video_service (VideoService): An instance of VideoService.
         """
-        self._keyboard_service = keyboard_service
         self._video_service = video_service
-        self._total = 0
-        self._score = Score()
+        self._cast = Cast()
+        self._script = Script()
+        self._scene_manager = SceneManager()
         
-    def start_game(self, cast):
-        """Starts the game using the given cast. Runs the main game loop.
-
+    def on_next(self, scene):
+        """Overriden ActionCallback method transitions to next scene.
+        
         Args:
-            cast (Cast): The cast of actors.
+            A number representing the next scene to transition to.
         """
-        self._video_service.open_window()
+        self._scene_manager.prepare_scene(scene, self._cast, self._script)
+        
+    def start_game(self):
+        """Starts the game. Runs the main game loop."""
+        self.on_next(NEW_GAME)
+        self._execute_actions(INITIALIZE)
+        self._execute_actions(LOAD)
         while self._video_service.is_window_open():
-            self._get_inputs(cast)
-            self._do_updates(cast)
-            self._do_outputs(cast)
-        self._video_service.close_window()
-
-    def _get_inputs(self, cast):
-        """Gets directional input from the keyboard and applies it to the robot.
+            self._execute_actions(INPUT)
+            self._execute_actions(UPDATE)
+            self._execute_actions(OUTPUT)
+        self._execute_actions(UNLOAD)
+        self._execute_actions(RELEASE)
+        
+    def _execute_actions(self, group):
+        """Calls execute for each action in the given group.
         
         Args:
+            group (string): The action group name.
             cast (Cast): The cast of actors.
+            script (Script): The script of actions.
         """
-        robot = cast.get_first_actor("robots")
-        velocity = self._keyboard_service.get_direction()
-        robot.set_velocity(velocity)        
-
-    def _do_updates(self, cast):
-        """Updates the robot's position and resolves any collisions with artifacts.
-        
-        Args:
-            cast (Cast): The cast of actors.
-        """
-        banner = cast.get_first_actor("banners")
-        robot = cast.get_first_actor("robots")
-        artifacts = cast.get_actors("artifacts")
-
-        banner.set_text("")
-        max_x = self._video_service.get_width()
-        max_y = self._video_service.get_height()
-        robot.move_next(max_x, max_y)
-        
-        #Differentiate between rocks and gems to add or subtract points
-        for artifact in artifacts:
-            if robot.get_position().equals(artifact.get_position()):
-                if artifact.get_text() == '*':
-                    self._score.value += 1
-                    cast.remove_actor('artifacts', artifact)
-                    
-                else:
-                    self._score.value -= 1
-                    cast.remove_actor('artifacts', artifact)
-
-            cast.add_actor('artifacts', artifact)
-                    
-            artifact.move_next(max_x, max_y)
-        self._score.update_score = self._total
-        self._score.display_score()
-
-
-    def _do_outputs(self, cast):
-        """Draws the actors on the screen.
-        
-        Args:
-            cast (Cast): The cast of actors.
-        """
-        self._video_service.clear_buffer()
-        actors = cast.get_all_actors()
-        self._video_service.draw_actors(actors)
-        self._video_service.flush_buffer()
+        actions = self._script.get_actions(group)    
+        for action in actions:
+            action.execute(self._cast, self._script, self)          
