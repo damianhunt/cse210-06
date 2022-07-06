@@ -5,7 +5,7 @@ from game.casting.point import Point
 
 
 class Bullet(Actor):
-    """A solid, spherical object that shoots up at falling objects in the game."""
+    """An object that shoots up at falling objects in the game."""
     
     def __init__(self, body, image, debug = False):
         """Constructs a new Bullet.
