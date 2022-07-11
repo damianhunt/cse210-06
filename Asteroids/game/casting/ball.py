@@ -28,7 +28,7 @@ class Bullet(Actor):
         velocity = Point(vx, vy)
         self._body.set_velocity(velocity)
 
-    def shoot_y(self):
+    def bounce_y(self):
         """Shoots the bullet in the y direction up."""
         velocity = self._body.get_velocity()
         rn = random.uniform(0.9, 1.1)
