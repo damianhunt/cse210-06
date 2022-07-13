@@ -77,7 +77,7 @@ class Ship:
         def collision(self, obj):
             return collide(self, obj)
 
-def collide(obj1, obj2):
-    offset_x = obj2.x - obj1.x
-    offset_y = obj2.y - obj1.y
-    return obj1._mask.overlap(obj2._mask, (offset_x, offset_y)) != None
+#def collide(obj1, obj2):
+#    offset_x = obj2.x - obj1.x
+#    offset_y = obj2.y - obj1.y
+#    return obj1._mask.overlap(obj2._mask, (offset_x, offset_y)) != None
