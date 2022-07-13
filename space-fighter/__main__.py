@@ -1,8 +1,11 @@
+from operator import imod
 import pygame
-
+from casting.player import Player
+from casting.enemy import Enemy
+from casting.lazer import Laser
+from casting.ship import Ship
 from constants import *
-
-
+from casting.ship import collide
 
 def main():
 
