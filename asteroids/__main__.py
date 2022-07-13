@@ -23,6 +23,10 @@ FONT_SIZE = 15
 COLS = 60
 ROWS = 40
 CAPTION = "Asteroids"
+<<<<<<< HEAD
+=======
+#DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
+>>>>>>> dd49f7ad0c8ac989e0018f8c878c7f0f1fa8a541
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 15
 
