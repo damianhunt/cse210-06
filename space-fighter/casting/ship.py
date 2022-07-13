@@ -46,3 +46,5 @@ class Ship:
 
     def get_height(self):
         return self.ship_img.get_height()
+    
+    # Add empty laser class here.

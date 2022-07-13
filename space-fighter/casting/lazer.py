@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 
+# Inherit laser class in the ship class and override with these methods.
 class Laser:
     def __init__(self, x, y, img):
         self.x = x

@@ -1,7 +1,7 @@
 import pygame
 from constants import *
 from ship import Ship
-from lazer import Lazer
+from lazer import Laser
 
 
 class Player(Ship):
