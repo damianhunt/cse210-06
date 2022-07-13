@@ -1,8 +1,8 @@
 import pygame
 from constants import *
-from ship import Ship
-from laser import Laser
-from enemy import Enemy
+from casting.ship import Ship
+from casting.laser import Laser
+from casting.enemy import Enemy
 
 
 class Player(Ship):
