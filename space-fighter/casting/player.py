@@ -31,5 +31,5 @@ class Player(Ship):
         self.healthbar(window)
 
     def healthbar(self, window):
-        pygame.draw.rect(window, (255,0,0), (self.x, self.y + self._ship_img.get_height() + 10, self._ship_img.get_width(), 10))
-        pygame.draw.rect(window, (0,255,0), (self.x, self.y + self._ship_img.get_height() + 10, self._ship_img.get_width() * (self.health/self.max_health), 10))
+        pygame.draw.rect(window, (255,0,0), (self._x, self._y + self._ship_img.get_height() + 10, self._ship_img.get_width(), 10))
+        pygame.draw.rect(window, (0,255,0), (self._x, self._y + self._ship_img.get_height() + 10, self._ship_img.get_width() * (self._health/self._max_health), 10))

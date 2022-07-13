@@ -16,11 +16,11 @@ class Enemy(Ship):
         self._mask = pygame.mask.from_surface(self._ship_img)
 
     def move(self, vel):
-        self.y += vel
+        self._y += vel
 
     def shoot(self):
         if self._cool_down_counter == 0:
-            laser = Laser(self.x-20, self.y, self.laser_img)
+            laser = Laser(self.x-20, self._y, self._laser_img)
             self._lasers.append(laser)
             self._cool_down_counter = 1
 
