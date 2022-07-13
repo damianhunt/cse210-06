@@ -1,7 +1,7 @@
 import pygame
 from constants import *
 from ship import Ship
-from lazer import Laser
+from laser import Laser
 
 class Enemy(Ship):
     COLOR_MAP = {

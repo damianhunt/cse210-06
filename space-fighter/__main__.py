@@ -2,7 +2,7 @@ from operator import imod
 import pygame
 from casting.player import Player
 from casting.enemy import Enemy
-from casting.lazer import Laser
+from casting.laser import Laser
 from casting.ship import Ship
 from constants import *
 from casting.ship import collide
@@ -102,6 +102,21 @@ def main():
                 enemies.remove(enemy)
 
         player.move_lasers(-laser_vel, enemies)
+
+def main_menu():
+    title_font = pygame.font.SysFont("comicsans", 70)
+    run = True
+    while run:
+        WIN.blit(BG, (0,0))
+        title_label = title_font.render("Press the mouse to begin...", 1, (255,255,255))
+        WIN.blit(title_label, (WIDTH/2 - title_label.get_width()/2, 350))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                main()
+    pygame.quit()
 
 
 if __name__ == "__main__":

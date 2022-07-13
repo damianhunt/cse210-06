@@ -1,7 +1,7 @@
 from msilib.schema import Class
 import pygame
 from constants import *
-from lazer import Laser
+from laser import Laser
 
 class Ship:
     '''
