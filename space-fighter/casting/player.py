@@ -10,7 +10,7 @@ class Player(Ship):
         super().__init__(x, y, health)
         self._ship_img = YELLOW_SPACE_SHIP
         self._laser_img = YELLOW_LASER
-        self._mask = pygame.mask.from_surface(self.ship_img)
+        self._mask = pygame.mask.from_surface(self._ship_img)
         self._max_health = health
 
     def move_lasers(self, vel, objs):

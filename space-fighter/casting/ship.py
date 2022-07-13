@@ -22,7 +22,7 @@ class Ship:
 
     def draw(self, window):
         window.blit(self._ship_img, (self._x, self._y))
-        for laser in self.lasers:
+        for laser in self._lasers:
             laser.draw(window)
 
     def move_lasers(self, vel, obj):
