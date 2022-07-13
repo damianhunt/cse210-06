@@ -2,12 +2,12 @@ import pygame
 from constants import *
 
 # Inherit laser class in the ship class and override with these methods.
-class Laser:
+class Laser: # class Ship(laser):
     def __init__(self, x, y, img):
-        self.x = x
-        self.y = y
-        self.img = img
-        self.mask = pygame.mask.from_surface(self.img)
+        self._x = x
+        self._y = y
+        self._img = img
+        self._mask = pygame.mask.from_surface(self.img)
 
     def draw(self, window):
         window.blit(self.img, (self.x, self.y))

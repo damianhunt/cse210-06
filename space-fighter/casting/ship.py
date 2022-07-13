@@ -6,13 +6,13 @@ class Ship:
     COOLDOWN = 30
 
     def __init__(self, x, y, health=100):
-        self.x = x
-        self.y = y
-        self.health = health
-        self.ship_img = None
-        self.laser_img = None
-        self.lasers = []
-        self.cool_down_counter = 0
+        self._x = x
+        self._y = y
+        self._health = health
+        self._ship_img = None
+        self._laser_img = None
+        self._lasers = []
+        self._cool_down_counter = 0
 
     def draw(self, window):
         window.blit(self.ship_img, (self.x, self.y))
@@ -48,3 +48,4 @@ class Ship:
         return self.ship_img.get_height()
     
     # Add empty laser class here.
+    # class Laser:

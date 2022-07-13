@@ -7,10 +7,10 @@ from lazer import Laser
 class Player(Ship):
     def __init__(self, x, y, health=100):
         super().__init__(x, y, health)
-        self.ship_img = YELLOW_SPACE_SHIP
-        self.laser_img = YELLOW_LASER
-        self.mask = pygame.mask.from_surface(self.ship_img)
-        self.max_health = health
+        self._ship_img = YELLOW_SPACE_SHIP
+        self._laser_img = YELLOW_LASER
+        self._mask = pygame.mask.from_surface(self.ship_img)
+        self._max_health = health
 
     def move_lasers(self, vel, objs):
         self.cooldown()
