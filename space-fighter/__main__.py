@@ -97,7 +97,7 @@ def main():
             enemy.move_lasers(laser_vel, player)
 
             if random.randrange(0, 2*60) == 1:
-                enemy.shoot()
+                enemy.shoot() 
 
             if collide(enemy, player):
                 player._health -= 10
