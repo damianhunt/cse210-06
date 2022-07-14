@@ -15,7 +15,7 @@ class Player(Ship):
 
     def move_lasers(self, vel, objs):
         self.cooldown()
-        for laser in self.lasers:
+        for laser in self._lasers:
             laser.move(vel)
             if laser.off_screen(HEIGHT):
                 self._lasers.remove(laser)
@@ -23,7 +23,7 @@ class Player(Ship):
                 for obj in objs:
                     if laser.collision(obj):
                         objs.remove(obj)
-                        if laser in self.lasers:
+                        if laser in self._lasers:
                             self._lasers.remove(laser)
 
     def draw(self, window):

@@ -8,9 +8,9 @@ from constants import *
 #from casting.ship import collide
 
 def collide(obj1, obj2):
-    offset_x = obj2.x - obj1.x
-    offset_y = obj2.y - obj1.y
-    return obj1.mask.overlap(obj2.mask, (offset_x, offset_y)) != None
+    offset_x = obj2._x - obj1._x
+    offset_y = obj2._y - obj1._y
+    return obj1._mask.overlap(obj2._mask, (offset_x, offset_y)) != None
 
 def main():
 
@@ -81,16 +81,16 @@ def main():
                 quit()
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_a] and player.x - player_vel > 0: # left
-            player.x -= player_vel
-        if keys[pygame.K_d] and player.x + player_vel + player.get_width() < WIDTH: # right
-            player.x += player_vel
-        if keys[pygame.K_w] and player.y - player_vel > 0: # up
-            player.y -= player_vel
-        if keys[pygame.K_s] and player.y + player_vel + player.get_height() + 15 < HEIGHT: # down
-            player.y += player_vel
+        if keys[pygame.K_a] and player._x - player_vel > 0: # left
+            player._x -= player_vel
+        if keys[pygame.K_d] and player._x + player_vel + player.get_width() < WIDTH: # right
+            player._x += player_vel
+        if keys[pygame.K_w] and player._y - player_vel > 0: # up
+            player._y -= player_vel
+        if keys[pygame.K_s] and player._y + player_vel + player.get_height() + 15 < HEIGHT: # down
+            player._y += player_vel
         if keys[pygame.K_SPACE]:
-            player.shoot()
+            player.shoot() 
 
         for enemy in enemies[:]:
             enemy.move(enemy_vel)
@@ -100,9 +100,9 @@ def main():
                 enemy.shoot()
 
             if collide(enemy, player):
-                player.health -= 10
+                player._health -= 10
                 enemies.remove(enemy)
-            elif enemy.y + enemy.get_height() > HEIGHT:
+            elif enemy._y + enemy.get_height() > HEIGHT:
                 lives -= 1
                 enemies.remove(enemy)
 

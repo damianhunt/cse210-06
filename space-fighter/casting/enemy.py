@@ -20,7 +20,7 @@ class Enemy(Ship):
 
     def shoot(self):
         if self._cool_down_counter == 0:
-            laser = Laser(self.x-20, self._y, self._laser_img)
+            laser = Laser(self._x-20, self._y, self._laser_img)
             self._lasers.append(laser)
             self._cool_down_counter = 1
 
