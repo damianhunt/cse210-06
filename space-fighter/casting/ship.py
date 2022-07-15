@@ -55,9 +55,6 @@ class Ship:
     
     # Inherit Laser class and override it.
     class Ship(Laser):
-        '''
-        Handles the firing of the laser.
-        '''
         
         def __init__(self, x, y, img):
             self._x = x
